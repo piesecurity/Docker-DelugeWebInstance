@@ -1,6 +1,8 @@
 FROM ubuntu
 MAINTAINER Pie Secure <admin@pie-secure.org>
-RUN apt-get update && \
+RUN echo "deb http://ppa.launchpad.net/deluge-team/ppa/ubuntu trusty main" >> /etc/apt/sources.list && \
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C5E6A5ED249AD24C && \
+apt-get update && \
 apt-get install -y deluged deluge-web deluge-console && \
 adduser --system  --gecos "Deluge Service" --disabled-password --group --home /var/lib/deluge deluge
 ADD deluged /etc/init.d/deluged
